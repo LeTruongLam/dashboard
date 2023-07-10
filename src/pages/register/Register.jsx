@@ -1,7 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./register.scss"
+
+
 const Register = () => {
   const [inputs, setInputs] = useState({
     username: "",
@@ -18,13 +21,14 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs)
-    // try {
-    //   await axios.post("/", inputs);
-    //   navigate("/login");
-    // } catch (err) {
-    //   setError(err.response.data);
-    // }
+    console.log(inputs);
+    try {
+      // await axios.post("/", inputs);
+      localStorage.setItem('user', JSON.stringify(inputs)); // Lưu thông tin người dùng vào localStorage
+      navigate("/login");
+    } catch (err) {
+      setError(err.response.data);
+    }
   };
 
   return (
